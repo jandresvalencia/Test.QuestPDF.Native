@@ -50,7 +50,10 @@ endif()
 # Linux configuration
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     file(GLOB SKIA_LIBRARY "${SKIA_DIR}/out/release/*.a")
-    target_link_libraries(QuestPdfSkia PRIVATE ${SKIA_LIBRARY})
+    find_library(COREFOUNDATION_LIBRARY CoreFoundation)
+    find_library(COREGRAPHICS_LIBRARY CoreGraphics)
+    find_library(CORETEXT_LIBRARY CoreText)
+    target_link_libraries(QuestPdfSkia PRIVATE ${SKIA_LIBRARY} ${CORETEXT_LIBRARY} ${COREGRAPHICS_LIBRARY} ${COREFOUNDATION_LIBRARY})
 endif()
 
 
